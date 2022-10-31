@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 int main() {
-    char a[100];
-    char b[100];
+    char a[100],b[100];
     int c;
     char input[100];
-    
     int flag=1;
     if (3!=scanf("%s %s %d",a,b,&c)) {
         return 0;
@@ -30,9 +28,3 @@ int main() {
     printf("\n");
     return 0;
 }
-/*
-ACDEFKJPOMN
-KJPOMNACDEF
-0
-I AM A BOY
- */

@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+int toNum(char ch){
+    return ch>='a'&&ch<='z'?(ch-'a')*2+1:(ch-'A')*2;
+    //nb
+}
 int insertion(int a[],int len);
 int main() {
     char input[100];

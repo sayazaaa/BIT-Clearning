@@ -1,5 +1,5 @@
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <cstring>
 using namespace std;
 char pro[100][1000];
 int main(){
@@ -35,13 +35,13 @@ int main(){
                 t1=0;
                 if(k<len-1){
                     if(pro[j][k+1]!='{'){
-                    printf("\n");
+                        printf("\n");
                     }
                 }
             }
             else if(k==len-1){
                 if(pro[j+1][k]!='{'){
-                      printf("\n");
+                    printf("\n");
                 }
             }
             else if(pro[j][k]=='}'){
@@ -49,7 +49,7 @@ int main(){
                 for(int t=1;t<=n;t++){
                     printf("    ");
                 }
-               printf("%c\n",pro[j][k]);
+                printf("%c\n",pro[j][k]);
             }
             else if(t1==0&&pro[j][k]!='>'&&pro[j][k]!='{'&&pro[j][k]!='}'){
                 for(int t=1;t<=n;t++){
@@ -58,14 +58,14 @@ int main(){
                 printf("%c",pro[j][k]);
                 t1=1;
                 if(pro[j][k]=='f'&&pro[j][k+1]=='o'&&pro[j][k+2]=='r'&&pro[j][k+3]=='('){
-                  mf=4;
+                    mf=4;
                 }
                 else if(mf==4&&pro[j][k]==')')  {
                     mf=0;
                 }
             }
             else if(t1!=0&&pro[j][k]!='>'&&pro[j][k]!='{'&&pro[j][k]==')')  {
-                                    mf=0;
+                mf=0;
             }
         }
     }
