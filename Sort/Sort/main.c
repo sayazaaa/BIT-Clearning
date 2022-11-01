@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define N 100000
+#define N 1000
 
 void reset(int a[]);
 void prarr(int a[]);
 int bubble(int a[],int len);
 int selection(int a[],int len);
 int insertion(int a[],int len);
-int quick(int a[],int len);int quick_th(int a[],int start,int end);
+void quick(int a[],int len);void quick_th(int a[],int start,int end);
 
 int main() {
     int a[N];
@@ -47,12 +47,12 @@ void reset(int a[]){
     clock_t t=clock();
     srand((unsigned int) t);
     for (int i=0; i<N; i++) {
-        a[i]= rand() % 1000;
+        a[i]= rand() % 1000000000;
     }
 }
 void prarr(int a[]){
     for (int l=0; l<N; l++) {
-        printf("%-5d",a[l]);
+        printf("%-10d",a[l]);
     }
     puts("");
 }
@@ -106,35 +106,35 @@ int insertion(int a[],int len){
 }
 
 
-int quick_th(int a[],int start,int end){
-    if (start>=end) {
-        return 0;
-    }
-    int middle=a[start];
+void quick_th(int a[],int l,int r){
+    int i=l,j=r;
+    int mid = a[(l+r)/2];
     int temp;
-    int left=start+1,right=end;
-    while (left<right) {
-        
-        while (a[left]<middle&&left<right) {
-            left++;
+    while(i<=j) {
+        while (a[i]<mid) {
+            i++;
         }
-        while (a[right]>=middle&&left<right) {
-            right--;
+        while (a[j]>mid) {
+            j--;
         }
-        temp=a[left];
-        a[left]=a[right];
-        a[right]=temp;
+        if (i<=j) {
+            //swap(a[l],a[r])
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+            
+            i++;j--;
+        }
+//        prarr(a);
+//        printf("i:%d\nj:%d\n",i,j);
     }
-    if (a[start]>a[left]) {
-        temp=a[left];
-        a[left]=a[start];
-        a[start]=temp;
+    if (l<j) {
+        quick_th(a, l, j);
     }
-    quick_th(a, start, left-1);
-    quick_th(a, left, end);
-    return 0;
+    if (i<r) {
+        quick_th(a, i, r);
+    }
 }
-int quick(int a[],int len){
+void quick(int a[],int len){
     quick_th(a, 0, len-1);
-    return 0;
 }
