@@ -54,3 +54,7 @@ int ctoi(char a){
     }
     return a;
 }
+
+//3 17
+//4 12
+//

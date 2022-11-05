@@ -20,10 +20,6 @@ int main() {
     i=0;flag=1;
     len=(int)strlen(a);
     while (i<len) {
-        //        if (a[i+1]==125) {
-        //            tab--;
-        //        }
-        
         if(a[i]=='#'){
             printf("#");
             i++;
@@ -95,17 +91,21 @@ int main() {
                 }
                 printf("%c",a[i]);
             }
-            if (a[i]==';') {
-                printf(";\n");
+            if (a[i]=='{') {
+                printf("\n%c\n",a[i]);
+                tab++;
                 i++;
+                pt(tab);
             }
-            else{
+            if(a[i]==0){
                 printf("\n");
+                pt(tab);
             }
             if (a[i]==125) {
                 tab--;
+                pt(tab);
             }
-            pt(tab);
+            
             continue;
         }
         
