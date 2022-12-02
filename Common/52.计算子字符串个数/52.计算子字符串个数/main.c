@@ -13,24 +13,20 @@ main( )
 }
   
 /* PRESET CODE END - NEVER TOUCH CODE ABOVE */
-#include <string.h>
 int countsub( char *str, char *ss ){
-    int i=0,count=0,max=0,flag=1;
-    int len=(int)strlen(ss);
-    while ( *(str+len-1)!=0) {
-        flag=1;
-        
-        for (i=0; i<len&&*str++==*(ss+i); i++) {
-            flag=0;
+    int c=0,max=0;
+    char *p=str,*q=ss;
+    while (*str) {
+        p=str++;q=ss;
+        c=0;
+        while (*p++==*q++) {
+            if(!*q){
+                q=ss;
+                c++;
+            }
         }
-        if (i==len) {
-            count++;
-        }
-        if (max<count) {
-            max=count;
-        }
-        if (flag) {
-            count=0;
+        if (max<c) {
+            max=c;
         }
     }
     return max;

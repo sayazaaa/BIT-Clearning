@@ -19,25 +19,25 @@ int main() {
     reset(a);quick(a, N);
     time(&end_t);
     printf("%d\n",(int)difftime(end_t, start_t));
-//    prarr(a);
-
+    //    prarr(a);
+    
     time(&start_t);
     reset(a);bubble(a, N);
     time(&end_t);
     printf("%d\n",(int)difftime(end_t, start_t));
-//    prarr(a);
-//
+    //    prarr(a);
+    //
     time(&start_t);
     reset(a);selection(a, N);
     time(&end_t);
     printf("%d\n",(int)difftime(end_t, start_t));
-//    prarr(a);
-//
+    //    prarr(a);
+    //
     time(&start_t);
     reset(a);insertion(a, N);
     time(&end_t);
     printf("%d\n",(int)difftime(end_t, start_t));
-//    prarr(a);
+    //    prarr(a);
     
     return 0;
 }
@@ -104,11 +104,9 @@ int insertion(int a[],int len){
     }
     return 0;
 }
-
-
 void quick_th(int a[],int l,int r){
     int i=l,j=r;
-    int mid = a[(l+r)/2];
+    int mid = a[(l+r) >> 1];
     int temp;
     while(i<=j) {
         while (a[i]<mid) {
@@ -125,8 +123,8 @@ void quick_th(int a[],int l,int r){
             
             i++;j--;
         }
-//        prarr(a);
-//        printf("i:%d\nj:%d\n",i,j);
+        //        prarr(a);
+        //        printf("i:%d\nj:%d\n",i,j);
     }
     if (l<j) {
         quick_th(a, l, j);
@@ -138,3 +136,22 @@ void quick_th(int a[],int l,int r){
 void quick(int a[],int len){
     quick_th(a, 0, len-1);
 }
+void merge(int a[],int l, int r) {
+    if (r - l <= 1){
+        return;
+    }
+    int mid = l + ((r - l) >> 1);
+    int temp[N];
+    merge(a, l, mid);
+    merge(a, mid, r);
+    for (int i = l, j = mid, k = l; k < r; k++) {
+        if (j == r || (i < mid && a[i] <= a[j]))
+            temp[k] = a[i++];
+        else
+            temp[k] = a[j++];
+    }
+    for (int i = l; i < r; i++){
+        a[i] = temp[i];
+    }
+}
+
